@@ -47,6 +47,7 @@ class PlayerList{
     Player* getTail();
     int getCount();
 public:
+    PlayerList();
     void print();
     void push(Player* player);
     void removePlayer(int playerId);

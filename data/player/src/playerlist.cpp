@@ -1,6 +1,11 @@
 #include <stdlib.h>
 #include "../player.h"
 
+PlayerList::PlayerList(){
+    this->count = 0;
+    this->head = NULL;
+    this->tail = NULL;
+}
 void PlayerList::setHead(Player* game){
     this->head = game;
 } 
