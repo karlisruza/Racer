@@ -18,7 +18,7 @@ Server::Server(){
     this->gamelist = new GameList();
     this->Listen();
 }
-void Server::Listen(){
+int Server::Listen(){
     int fd = socket(AF_INET, SOCK_STREAM, 0);
     if (fd < 0) {
         perror("tcp socket error");
@@ -41,14 +41,14 @@ void Server::Listen(){
     }
     this->setFd(fd);
     printf("Listening on port %d \n", PORT);
-    return;
+    return 0;
 }
 void Server::handleRequest(){
     while(true){
         printf("thread running");
     }
 }
-void Server::handleConnection(){
+int Server::handleConnection(){
     while(true){
         struct sockaddr_in peerAddr;
 	    socklen_t addrSize = sizeof(peerAddr);
@@ -62,7 +62,7 @@ void Server::handleConnection(){
         player->setId(clientFd);
         this->getPlayerList()->push(player);
 
-        std::thread thread(this->handleRequest, *this);
+        std::thread thread(&Server::handleRequest, *this);
     }
 }
 void Server::setFd(int fd){
