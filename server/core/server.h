@@ -3,13 +3,13 @@ class Server{
     int fd;
     GameList* gamelist;
     PlayerList* playerlist;
-    void Listen();
-    void Server::handleRequest()
+    int Listen();
+    void handleRequest();
     void setFd(int fd);
     int getFd();
     GameList* getGameList();
     PlayerList* getPlayerList();
 public:
     Server();
-    void handleConnection();
+    int handleConnection();
 };
